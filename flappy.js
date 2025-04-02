@@ -10,6 +10,10 @@ document.body.style.alignItems = "center";
 document.body.style.height = "100vh";
 document.body.style.background = "skyblue";
 
+// Load bird image
+const birdImg = new Image();
+birdImg.src = "assets/bird.png";
+
 const bird = {
     x: 50,
     y: 150,
@@ -25,8 +29,7 @@ let frame = 0;
 let gameOver = false;
 
 function drawBird() {
-    ctx.fillStyle = "yellow";
-    ctx.fillRect(bird.x, bird.y, bird.width, bird.height);
+    ctx.drawImage(birdImg, bird.x, bird.y, bird.width, bird.height);
 }
 
 function drawPipes() {
