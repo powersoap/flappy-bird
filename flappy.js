@@ -12,7 +12,9 @@ document.body.style.background = "skyblue";
 
 // Load bird image
 const birdImg = new Image();
-birdImg.src = "assets/bird.png";  // Ensure this path is correct
+birdImg.src = "assets/bird.jpg";
+birdImg.onload = () => console.log("Bird image loaded successfully!");
+birdImg.onerror = () => console.error("Error loading bird image!");
 
 const bird = {
     x: 50,
