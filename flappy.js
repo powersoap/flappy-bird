@@ -12,18 +12,19 @@ document.body.style.background = "skyblue";
 
 // Load bird image
 const birdImg = new Image();
-birdImg.src = "assets/bird.png";
+birdImg.src = "assets/bird.png";  // Ensure this path is correct
 
 const bird = {
     x: 50,
     y: 150,
-    width: 20,
-    height: 20,
+    width: 30, // Adjust width for better scaling
+    height: 30, // Adjust height for better scaling
     gravity: 0.5,
-    lift: -5,
+    lift: -10,
     velocity: 0,
 };
 
+// Pipes and game state
 const pipes = [];
 let frame = 0;
 let gameOver = false;
@@ -42,17 +43,17 @@ function drawPipes() {
 
 function update() {
     if (gameOver) return;
-    
+
     bird.velocity += bird.gravity;
     bird.y += bird.velocity;
-    
+
     if (frame % 100 === 0) {
         const pipeHeight = Math.random() * (canvas.height / 2);
         pipes.push({ x: canvas.width, top: pipeHeight, bottom: pipeHeight + 100, width: 40 });
     }
-    
+
     pipes.forEach(pipe => pipe.x -= 2);
-    
+
     pipes.forEach(pipe => {
         if (
             bird.x < pipe.x + pipe.width &&
@@ -62,11 +63,11 @@ function update() {
             gameOver = true;
         }
     });
-    
+
     if (bird.y + bird.height >= canvas.height || bird.y <= 0) {
         gameOver = true;
     }
-    
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawBird();
     drawPipes();
@@ -78,4 +79,5 @@ document.addEventListener("keydown", () => {
     if (!gameOver) bird.velocity = bird.lift;
 });
 
+// Start game
 update();
